@@ -1,3 +1,33 @@
 body {
   background-color: grey;
 }
+
+.calculator {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  width: 500px;
+  margin:auto;
+}
+
+#screen {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.numbers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  width: 200px;
+}
+
+#button0 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.operators {
+  display: block;
+  width: 40px;
+}

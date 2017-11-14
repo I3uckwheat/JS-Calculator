@@ -1,3 +1,16 @@
+const buttonContainer = document.querySelector(".numbers")
+generateButtons9to0(buttonContainer);
+
+function generateButtons9to0(container){
+  for(let i = 9; i >=0; i--) {
+    let button = document.createElement("button");
+    button.setAttribute("name", `button${i}`);
+    button.setAttribute("id",`button${i}`)
+    button.innerHTML = i
+    container.appendChild(button);
+  }
+}
+
 function add(a, b) {
   return a + b;
 }
