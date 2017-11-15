@@ -1,5 +1,9 @@
-const buttonContainer = document.querySelector(".numbers")
+const buttonContainer = document.querySelector(".numbers");
+const operatorContainer = document.querySelector(".operators");
+const calcScreen = document.querySelector("#screen");
+let screenvalue = 0;
 generateButtons9to0(buttonContainer);
+addClickHandlers();
 
 function generateButtons9to0(container){
   for(let i = 9; i >=0; i--) {
@@ -9,6 +13,17 @@ function generateButtons9to0(container){
     button.innerHTML = i
     container.appendChild(button);
   }
+}
+
+function addClickHandlers() {
+  let buttonChildren = buttonContainer.children
+  for(let i = 0, j = 9; i < buttonChildren.length; i++, j--) {
+    buttonChildren[i].addEventListener("click", () => console.log(j));
+  }
+}
+
+function numberHandler(num) {
+  console.log(num);
 }
 
 function add(a, b) {
@@ -45,3 +60,13 @@ function operate(operator, a, b) {
       return "Invalid Operator: " + operator;
   }
 }
+
+function updateScreen(value) {
+  calcScreen.innerHTML = value;
+}
+
+// calcScreen = {
+//   value: 0,
+//   screen: document.querySelector("#screen"),
+//   update: () => console.log(this.screen)
+// }
