@@ -8,7 +8,7 @@ body {
 
 .calculator {
   display: grid;
-  grid-template-columns: 171px 110px;
+  grid-template-columns: 171px 110px 50px;
 }
 
 #screen {
@@ -22,6 +22,7 @@ body {
 .numbers {
   display: grid;
   grid-template-columns: repeat(3, var(--button-width));
+  grid-row-start: 2;
 }
 
 #button0 {
@@ -32,9 +33,19 @@ body {
 .operators {
   display: grid;
   grid-template-columns: repeat(2, var(--button-width));
+  grid-row-start: 2;
 }
 
 #eql {
   grid-column-start: 1;
   grid-column-end: 3;
+}
+
+.calc {
+  grid-row-start: 2;
+  margin-left: 20px;
+}
+
+#clr {
+  height: 100%;
 }
