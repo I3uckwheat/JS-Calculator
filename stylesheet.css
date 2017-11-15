@@ -1,25 +1,27 @@
+html {
+  --button-width: 55px;
+}
+
 body {
   background-color: grey;
 }
 
 .calculator {
   display: grid;
-  grid-template-rows: repeat(2, 1fr);
-  grid-template-columns: repeat(2, 1fr);
-  width: 500px;
-  margin:auto;
+  grid-template-columns: 171px 110px;
 }
 
 #screen {
   grid-column-start: 1;
   grid-column-end: 3;
+  border-style: solid;
+  text-align: right;
+  padding-right: 5px;
 }
 
 .numbers {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  width: 200px;
+  grid-template-columns: repeat(3, var(--button-width));
 }
 
 #button0 {
@@ -28,6 +30,11 @@ body {
 }
 
 .operators {
-  display: block;
-  width: 40px;
+  display: grid;
+  grid-template-columns: repeat(2, var(--button-width));
+}
+
+#eql {
+  grid-column-start: 1;
+  grid-column-end: 3;
 }
