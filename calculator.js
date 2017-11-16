@@ -1,7 +1,10 @@
 const buttonContainer = document.querySelector(".numbers");
 const operatorContainer = document.querySelector(".operators");
 const calcScreen = document.querySelector("#screen");
-let screenvalue = 0;
+let screenValue = "";
+let holdValue = null;
+let operatorValue = null;
+
 generateButtons9to0(buttonContainer);
 addClickHandlers();
 
@@ -17,13 +20,36 @@ function generateButtons9to0(container){
 
 function addClickHandlers() {
   let buttonChildren = buttonContainer.children
+  let bigAssClearButton = document.querySelector("#clr");
+  let operatorChildren = operatorContainer.children
   for(let i = 0, j = 9; i < buttonChildren.length; i++, j--) {
-    buttonChildren[i].addEventListener("click", () => console.log(j));
+    buttonChildren[i].addEventListener("click", () => updateScreenValue(j));
+  }
+
+  bigAssClearButton.addEventListener("click", () => clearCalculator());
+
+  for(let i = operatorChildren.length - 1; i >= 0; i--){
+    let operation = operatorChildren[i];
+    operation.addEventListener("click", () => operatorHandler(operation.innerHTML));
   }
 }
 
-function numberHandler(num) {
-  console.log(num);
+function updateScreenValue(value) {
+  screenValue += value;
+  updateScreen();
+}
+
+function updateScreen() {
+  calcScreen.innerHTML = screenValue;
+}
+
+function clearCalculator() {
+  screenValue = " ";
+  updateScreen();
+}
+
+function operatorHandler(operator) {
+  holdValue === null ? operatorValue = operator : operate(operatorValue, holdValue, ScreenValue);
 }
 
 function add(a, b) {
@@ -61,9 +87,6 @@ function operate(operator, a, b) {
   }
 }
 
-function updateScreen(value) {
-  calcScreen.innerHTML = value;
-}
 
 // calcScreen = {
 //   value: 0,
