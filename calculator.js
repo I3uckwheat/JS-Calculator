@@ -49,7 +49,8 @@ function clearCalculator() {
 }
 
 function operatorHandler(operator) {
-  holdValue === null ? operatorValue = operator : operate(operatorValue, holdValue, ScreenValue);
+  holdValue = screenValue;
+  clearCalculator();
 }
 
 function add(a, b) {
