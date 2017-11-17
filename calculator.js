@@ -35,10 +35,10 @@ function addClickHandlers() {
 
   clearScreenBtn.addEventListener("click", () => clearScreen());
   clearCalcBtn.addEventListener("click", () => totalClear());
-  operatorChildren[operatorChildren.length -1].addEventListener("click", () => equals());
+  operatorChildren[operatorChildren.length -1].addEventListener("click", () => compute());
 }
 
-function equals(){
+function compute(){
   if(operatorValue !== null) {
     screenValue = operate(operatorValue, Number(holdValue), Number(screenValue));
     updateScreen();
@@ -129,10 +129,3 @@ function operate(operator, a, b) {
       return "Invalid Operator: " + operator;
   }
 }
-
-
-// calcScreen = {
-//   value: 0,
-//   screen: document.querySelector("#screen"),
-//   update: () => console.log(this.screen)
-// }
