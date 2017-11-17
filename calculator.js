@@ -5,6 +5,7 @@ let screenValue = "";
 let holdValue = null;
 let operatorValue = null
 let answerOnScreen = false;
+let equalsPressed = false;
 
 generateButtons9to0(buttonContainer);
 addClickHandlers();
@@ -42,7 +43,7 @@ function compute(){
   if(operatorValue !== null) {
     screenValue = operate(operatorValue, Number(holdValue), Number(screenValue));
     updateScreen();
-    clearCalculator();
+    equalsPressed = true;
     answerOnScreen = true;
   }
 }
@@ -83,6 +84,10 @@ function totalClear() {
 
 function operatorHandler(operator) {
   if(operatorValue === null) {
+    operatorValue = operator;
+    holdValue = screenValue;
+    answerOnScreen = true;
+  } else if (equalsPressed) {
     operatorValue = operator;
     holdValue = screenValue;
     answerOnScreen = true;
