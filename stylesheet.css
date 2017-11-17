@@ -48,5 +48,10 @@ body {
 }
 
 #clr {
-  height: 100%;
+  height: 50%;
+}
+
+#clr-calc {
+  height: 50%;
+  width: 269%;
 }

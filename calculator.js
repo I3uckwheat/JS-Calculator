@@ -21,7 +21,8 @@ function generateButtons9to0(container){
 
 function addClickHandlers() {
   let buttonChildren = buttonContainer.children
-  let bigAssClearButton = document.querySelector("#clr");
+  let clearScreenBtn = document.querySelector("#clr");
+  let clearCalcBtn = document.querySelector("#clr-calc");
   let operatorChildren = operatorContainer.children
   for(let i = 0, j = 9; i < buttonChildren.length; i++, j--) {
     buttonChildren[i].addEventListener("click", () => updateScreenValue(j));
@@ -32,12 +33,12 @@ function addClickHandlers() {
     operation.addEventListener("click", () => operatorHandler(operation.innerHTML));
   }
 
-  bigAssClearButton.addEventListener("click", () => clearScreen());
+  clearScreenBtn.addEventListener("click", () => clearScreen());
+  clearCalcBtn.addEventListener("click", () => totalClear());
   operatorChildren[operatorChildren.length -1].addEventListener("click", () => equals());
 }
 
 function equals(){
-  console.log("equals");
   if(operatorValue !== null) {
     screenValue = operate(operatorValue, Number(holdValue), Number(screenValue));
     updateScreen();
@@ -70,6 +71,12 @@ function clearScreen() {
   screenValue = " ";
   answerOnScreen = false;
   updateScreen();
+}
+
+function totalClear() {
+  clearCalculator();
+  clearScreen();
+  answerOnScreen = true;
 }
 
 function operatorHandler(operator) {
