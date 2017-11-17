@@ -26,11 +26,20 @@ function addClickHandlers() {
     buttonChildren[i].addEventListener("click", () => updateScreenValue(j));
   }
 
-  bigAssClearButton.addEventListener("click", () => clearCalculator());
-
-  for(let i = operatorChildren.length - 1; i >= 0; i--){
+  for(let i = operatorChildren.length - 2; i >= 0; i--){
     let operation = operatorChildren[i];
     operation.addEventListener("click", () => operatorHandler(operation.innerHTML));
+  }
+
+  bigAssClearButton.addEventListener("click", () => clearScreen());
+  operatorChildren[operatorChildren.length -1].addEventListener("click", () => equals());
+}
+
+function equals(){
+  console.log("equals");
+  if(operatorValue !== null) {
+    console.log(operate(operatorValue, holdValue, screenValue));
+    clearCalculator();
   }
 }
 
@@ -44,13 +53,22 @@ function updateScreen() {
 }
 
 function clearCalculator() {
+  operatorValue = null;
+  holdValue = null;
+  clearScreen();
+}
+
+function clearScreen() {
   screenValue = " ";
   updateScreen();
 }
 
 function operatorHandler(operator) {
-  holdValue = screenValue;
-  clearCalculator();
+  if(operatorValue === null) {
+    operatorValue = operator;
+    holdValue = screenValue;
+    clearScreen();
+  }// else if() {CALCULATE AND CONTINUE}
 }
 
 function add(a, b) {
