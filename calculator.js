@@ -87,7 +87,7 @@ function operatorHandler(operator) {
     holdValue = screenValue;
     answerOnScreen = true;
   } else {
-    holdValue = operate(operatorValue, holdValue, screenValue);
+    holdValue = operate(operatorValue, Number(holdValue), Number(screenValue));
     screenValue = holdValue;
     operatorValue = operator;
     answerOnScreen = true;
