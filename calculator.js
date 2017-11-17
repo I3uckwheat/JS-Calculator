@@ -3,7 +3,8 @@ const operatorContainer = document.querySelector(".operators");
 const calcScreen = document.querySelector("#screen");
 let screenValue = "";
 let holdValue = null;
-let operatorValue = null;
+let operatorValue = null
+let answerOnScreen = false;
 
 generateButtons9to0(buttonContainer);
 addClickHandlers();
@@ -41,11 +42,17 @@ function equals(){
     screenValue = operate(operatorValue, Number(holdValue), Number(screenValue));
     updateScreen();
     clearCalculator();
+    answerOnScreen = true;
   }
 }
 
 function updateScreenValue(value) {
-  screenValue += value;
+  if(answerOnScreen === false) {
+    screenValue += value;
+  } else {
+    screenValue = value.toString();
+    answerOnScreen = false;
+  }
   updateScreen();
 }
 
@@ -56,10 +63,12 @@ function updateScreen() {
 function clearCalculator() {
   operatorValue = null;
   holdValue = null;
+  answerOnScreen = false;
 }
 
 function clearScreen() {
   screenValue = " ";
+  answerOnScreen = false;
   updateScreen();
 }
 
@@ -67,8 +76,14 @@ function operatorHandler(operator) {
   if(operatorValue === null) {
     operatorValue = operator;
     holdValue = screenValue;
-    clearScreen();
-  }// else if() {CALCULATE AND CONTINUE}
+    answerOnScreen = true;
+  } else {
+    holdValue = operate(operatorValue, holdValue, screenValue);
+    screenValue = holdValue;
+    operatorValue = operator;
+    answerOnScreen = true;
+    updateScreen();
+  }
 }
 
 function add(a, b) {
