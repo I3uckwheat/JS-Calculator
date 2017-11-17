@@ -48,7 +48,9 @@ function equals(){
 }
 
 function updateScreenValue(value) {
-  if(answerOnScreen === false) {
+  if(answerOnScreen === false && screenValue.length > 9) {
+    screenValue = screenValue.slice(1, 10) + value;
+  }else if(answerOnScreen === false) {
     screenValue += value;
   } else {
     screenValue = value.toString();
@@ -68,7 +70,7 @@ function clearCalculator() {
 }
 
 function clearScreen() {
-  screenValue = " ";
+  screenValue = "";
   answerOnScreen = false;
   updateScreen();
 }
