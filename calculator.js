@@ -38,7 +38,8 @@ function addClickHandlers() {
 function equals(){
   console.log("equals");
   if(operatorValue !== null) {
-    console.log(operate(operatorValue, holdValue, screenValue));
+    screenValue = operate(operatorValue, Number(holdValue), Number(screenValue));
+    updateScreen();
     clearCalculator();
   }
 }
@@ -55,7 +56,6 @@ function updateScreen() {
 function clearCalculator() {
   operatorValue = null;
   holdValue = null;
-  clearScreen();
 }
 
 function clearScreen() {
